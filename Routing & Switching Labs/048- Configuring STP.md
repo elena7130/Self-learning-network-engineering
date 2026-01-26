@@ -1,6 +1,7 @@
 **Date:** 2026-01-26
 
 **Topology:** 
+
 <img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/75309f88-11b7-4ac9-9568-21e9a22443b7" />
 
 
@@ -22,7 +23,7 @@
 4. Enable Portfast and BPDU Guard on the appropriate interfaces.
   
 
-[Answer1]
+#### Answer1
 1.Using the configuration 'show spanning-tree summary', then CLI shows defalut STP version is PVST mode 
 2. Configuration-on each switch 
 ```
@@ -57,7 +58,7 @@ Use the configuration 'show spanning-tree '
 5.The interface g0/1 on SW1 is blocked , because the interface is alternative port ;
 
 
-### Answer 2 :
+#### Answer 2 :
 Configure on SW1/2/3
 
 ```
@@ -66,7 +67,7 @@ SW1(config)spanning-tree mode rapid-pvst
 ```
 
 
-### Answer 3 :
+#### Answer 3 :
 
 Configure on SW1/2/3
 
@@ -79,7 +80,7 @@ SW3(config)spanning-tree vlan 30 root primary
 SW3(config)spanning-tree vlan 20 root secondary
 ```
 
-Answer 4 :
+### Answer 4 :
 ```
 SW1(config)intface range f0/1 - 3
 SW1(config-if-range)spanning-tree portfast 
