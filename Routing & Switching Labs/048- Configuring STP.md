@@ -1,12 +1,12 @@
 **Date:** 2026-01-26
 
 **Topology:** 
-<img width="1169" height="741" alt="image" src="https://github.com/user-attachments/assets/75309f88-11b7-4ac9-9568-21e9a22443b7" />
+<img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/75309f88-11b7-4ac9-9568-21e9a22443b7" />
 
 
 ## Goals
 
-- 1. What is the current (default) STP version running on the switches?
+1. What is the current (default) STP version running on the switches?
     What is the bridge ID for each switch?
     What is the root bridge for each VLAN?
     What is the STP cost of each interface?
@@ -21,9 +21,9 @@
 
 4. Enable Portfast and BPDU Guard on the appropriate interfaces.
   
-Steps: 
 
 [Answer1]
+1.Using the configuration 'show spanning-tree summary', then CLI shows defalut STP version is PVST mode 
 2. Configuration-on each switch 
 ```
 SW1#show spanning-tree
