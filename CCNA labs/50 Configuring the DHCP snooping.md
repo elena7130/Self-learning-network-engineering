@@ -10,7 +10,8 @@
 
  
 ## Topology
-![Uploading image.png…]()
+<img width="986" height="340" alt="image" src="https://github.com/user-attachments/assets/1e7cbcaa-f1c8-4dad-9237-abb0696ccc5a" />
+
 
 
 ## Configuration - DHCP pools on R1(DHCP server)
