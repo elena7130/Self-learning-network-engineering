@@ -1,5 +1,4 @@
 **Date:** 2026-02-02
-*Lab Resource* : https://www.certskills.com/clab554/#1621529957898-a5fb3bce-f3aa
 
 **Topology:** 
 <img width="738" height="693" alt="image" src="https://github.com/user-attachments/assets/ef3883b9-79a4-4782-aab5-63770cddf189" />
@@ -65,3 +64,4 @@ Dist2(config-if-range)interface port-channel 10
 Dist2(config-if-range)ip address 100.1.12.14 255.255.255.240
 ```
 
+*Lab Resource* : https://www.certskills.com/clab554/#1621529957898-a5fb3bce-f3aa
