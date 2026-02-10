@@ -14,33 +14,45 @@ Troubleshoot and fix the issues.
 
 Not all routers are misconfigured.
   
-## Configuration - checking on R4
+## R4: Troubleshooting & Resolution
 
-1. Through`show ip route ospf ` , I find that no route table in R4
-2. Then I find that whether ip address is correct through `show ip interface brief` , they are correct . 
-3. Through `show ip protocal`and check networks , passive interface , I found that g0/0 is in the passive interface , which possibility cause issue that no ospf route on R4 
-4. Configure :
-     route ospf 1
-     no passive-interface g0/0
-5.  check `show ip route ospf `, then it works and I find the network 10.14.0.0 and 2.2.2.2 in the table and R1 is the ospf neighbour with R4
+Initial Check: I ran show ip route ospf and found that the routing table on R4 was empty.
 
+Interface Verification: I checked the IP addresses using show ip interface brief; all addresses were configured correctly.
 
-## Configuration - checking on R1
+Protocol Analysis: Using show ip protocols, I checked the advertised networks and passive interfaces. I discovered that interface g0/0 was configured as a passive interface. This prevented R4 from forming OSPF adjacencies or receiving routes on that segment.
 
-  1. Checking on R1 with command `show ip route ` ,`show ip protocal`. 
-  2. R4 and R2 are OSPF neighbour with R1
-  
-## Configuration - checking on R2 
+Configuration Fix:
 
-1. Only R1 is the neighour with R2 , so there are probably some issues between with R2 and R4  
-2. Through `show ip interface breif`, I find that interface f2/0 on R2 is down , so configure `no shutdown`on that interface
-3. The networks on R2 are correct . That means , 10.2.0.0 in area 1 and 10.23.0.0 in area 0 
+Bash
+router ospf 1
+ no passive-interface g0/0
+Verification: After the fix, I verified the routing table with show ip route ospf. The routes for 10.14.0.0 and 2.2.2.2 appeared, and R1 successfully became an OSPF neighbor with R4.
 
-## Configuration - checking on R3
+R1: Verification
+Checked the routing table and protocol status using show ip route and show ip protocols.
 
-1. I find that network 10.23.0.0 is in the wrong area . 
-2. configure `route ospf 1 10.23.0.0 area 0 `
-3. Then R2 and R5 are neighbours with R3
+Confirmed that R1 has successfully established OSPF neighbor relationships with both R4 and R2.
 
+R2: Troubleshooting & Resolution
+Neighbor Status: Only R1 was showing as a neighbor. I suspected an issue on the link between R2 and R3.
 
-If R5 could ping R4 , that means the lab is success .
+Interface Status: show ip interface brief revealed that interface f2/0 on R2 was administratively down.
+
+Configuration Fix:
+
+Bash
+interface f2/0
+ no shutdown
+Network Validation: I confirmed the network advertisements are correct: 10.2.0.0 is in Area 1 and 10.23.0.0 is in Area 0.
+
+R3: Troubleshooting & Resolution
+Area Mismatch: I discovered that the network 10.23.0.0 was assigned to the wrong area.
+
+Configuration Fix:
+
+Bash
+router ospf 1
+ no network 10.23.0.0 [wildcard_mask] area [wrong_area]
+ network 10.23.0.0 [wildcard_mask] area 0
+Verification: After correcting the area, R2 and R5 successfully formed neighbor adjacencies with R3.
