@@ -182,3 +182,5 @@ DSW4(config-if)ip ospf 1 area 4
 ## Verify on BBR1
 
 Using `show ip ospf database`,`show ip ospf interface brief` ,`show ip ospf neighbour` to verify configurations are correct . And, on the BBR1 , I should ping the pcs in different VLAN successfully on BBR1 . 
+
+# This lab was built and tested using the NetSim online lab environment.
